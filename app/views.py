@@ -1,12 +1,16 @@
-from flask import render_template
+from flask import render_template, flash
+from werkzeug.utils import redirect
+
 from app import app
 from app.forms import LoginForm
+
 
 @app.route('/')
 @app.route('/index')
 def index():
     user = {'username': 'Matt'}
     return render_template('index.html', title='Home', user=user)
+
 
 @app.route('/login')
 def login():
