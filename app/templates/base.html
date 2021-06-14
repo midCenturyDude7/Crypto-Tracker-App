@@ -1,0 +1,20 @@
+<html>
+
+    <head>
+        {% if title %}
+        <title>{{ title }} - CryptoTracker App</title>
+        {% else %}
+        <title>Welcome to CryptoTracker - Track Your Favorite Cryptocurrencies in One Place</title>
+        {% endif %}
+    </head>
+
+    <body>
+        <div>CryptoTracker:
+            <a href="/index">Home</a>
+            <a href="/login">Login</a>
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+
+</html>
