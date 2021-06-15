@@ -1,15 +1,14 @@
 <html>
-
     <head>
         {% if title %}
-        <title>{{ title }} - CryptoTracker App</title>
+        <title>{{ title }} - Microblog</title>
         {% else %}
-        <title>Welcome to CryptoTracker - Track Your Favorite Cryptocurrencies in One Place</title>
+        <title>Welcome to Microblog</title>
         {% endif %}
     </head>
-
     <body>
-        <div>CryptoTracker:
+        <div>
+            Microblog:
             <a href="{{ url_for('index') }}">Home</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
@@ -29,5 +28,4 @@
         {% endwith %}
         {% block content %}{% endblock %}
     </body>
-
 </html>
