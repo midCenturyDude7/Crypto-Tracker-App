@@ -10,7 +10,7 @@ from app.models import User
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Matt'}
+    # user = {'username': 'Matt'}
     return render_template('index.html', title='Home')
 
 
