@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 # Database
-.db
+*.db
 
 # Distribution / packaging
 .Python
