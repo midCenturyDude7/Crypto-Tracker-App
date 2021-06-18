@@ -7,21 +7,18 @@ from app.forms import LoginForm, RegistrationForm, EditProfileForm
 from app.models import User
 
 
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
+
+
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -70,13 +67,6 @@ def user_profile(username):
     return render_template('user.html', user=user)
 
 
-@app.before_request
-def before_request():
-    if current_user.is_authenticated:
-        current_user.last_seen = datetime.utcnow()
-        db.session.commit()
-
-
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
@@ -90,4 +80,4 @@ def edit_profile():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current.user.about_me
-        return render_template('edit_profile.html', title="Edit Profile", form=form)
+    return render_template('edit_profile.html', title="Edit Profile", form=form)
