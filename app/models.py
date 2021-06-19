@@ -11,8 +11,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     cryptos = db.relationship('Profile', backref='crypto', lazy='dynamic')
-    about_me = db.Column(db.String(140))
-    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    # about_me = db.Column(db.String(140))
+    # last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -43,6 +43,17 @@ class Profile(db.Model):
     def __repr__(self):
         return f'<Profile {self.username}>'
 
+
+# def init_db():
+#     db.create_all()
+
+#     # Create a test user
+#     new_user = User('a@a.com', 'aaaaaaaa')
+#     db.session.add(new_user)
+#     db.session.commit()
+#     db.session.commit()
+
+
 # Miguel's table: keeping it here for now
 # class Post(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
@@ -52,3 +63,7 @@ class Profile(db.Model):
 #
 #     def __repr__(self):
 #         return '<Post {}>'.format(self.body)
+
+
+# if __name__ == '__main__':
+#     init_db()
