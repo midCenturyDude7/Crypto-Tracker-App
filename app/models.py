@@ -1,3 +1,4 @@
+from app.views import user_profile
 from datetime import datetime
 from app import db, login
 from flask_login import UserMixin
@@ -11,8 +12,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     cryptos = db.relationship('Profile', backref='crypto', lazy='dynamic')
-    # about_me = db.Column(db.String(140))
-    # last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -35,13 +36,13 @@ def load_user(id):
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
+    username_profile = db.Column(db.String(64), index=True, unique=True)
+    email_profile = db.Column(db.String(120), index=True, unique=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return f'<Profile {self.username}>'
+        return f'<Profile {self.username_profile}>'
 
 
 # Code to initialize db within code block as opposed to Flask-Migrate
