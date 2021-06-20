@@ -44,6 +44,7 @@ class Profile(db.Model):
         return f'<Profile {self.username}>'
 
 
+# Code to initialize db within code block as opposed to Flask-Migrate
 # def init_db():
 #     db.create_all()
 
