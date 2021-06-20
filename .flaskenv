@@ -1,2 +1,0 @@
-FLASK_APP=crypto_tracker.py
-FLASK_DEBUG=1
