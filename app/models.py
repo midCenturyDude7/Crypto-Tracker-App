@@ -11,9 +11,9 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    # cryptos = db.relationship('Profile', backref='crypto', lazy='dynamic')
-    # about_me = db.Column(db.String(140))
-    # last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    cryptos = db.relationship('Profile', backref='crypto', lazy='dynamic')
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -34,15 +34,15 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-# class Profile(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     username_profile = db.Column(db.String(64), index=True, unique=True)
-#     email_profile = db.Column(db.String(120), index=True, unique=True)
-#     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+class Profile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username_profile = db.Column(db.String(64), index=True, unique=True)
+    email_profile = db.Column(db.String(120), index=True, unique=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-#     def __repr__(self):
-#         return f'<Profile {self.username_profile}>'
+    def __repr__(self):
+        return f'<Profile {self.username_profile}>'
 
 
 # Code to initialize db within code block as opposed to Flask-Migrate
