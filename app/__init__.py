@@ -8,7 +8,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from flask_nav import Nav
-from flask_nav.elements import Navbar, View
+from flask_nav.elements import *
 from config import Config
 
 app = Flask(__name__)
