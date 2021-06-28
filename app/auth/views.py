@@ -26,7 +26,7 @@ def login():
     return render_template('auth/login.html', title=_('Sign In'), form=form)
 
 
-@app.route('/logout')
+@bp.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
