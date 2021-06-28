@@ -1,9 +1,10 @@
 # from app.views import user_profile
 from datetime import datetime
-from app import db, login
+from flask import current_app
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from hashlib import md5
+from app import db, login
 
 
 class User(UserMixin, db.Model):
